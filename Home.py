@@ -1,4 +1,3 @@
-import streamlit
 import streamlit as st
 import pandas
 
@@ -19,24 +18,26 @@ st.write(content)
 st.header("Our Team")
 
 df = pandas.read_csv("data.csv", sep=",")
+topics = pandas.read_csv("topics.csv")
+print(topics)
 
-col1, space1, col2, space2, col3 = streamlit.columns([1, 0.5, 1, 0.5, 1])
+col1, space1, col2, space2, col3 = st.columns([1, 0.5, 1, 0.5, 1])
 # col1, col2, col3 = streamlit.columns(3)
 
 with col1:
     for index, row in df[0:4].iterrows():
-        st.header(f"{row['first name']} {row['last name']}")
+        st.subheader(f"{row['first name'].title()} {row['last name'].title()}")
         st.write(row["role"])
         st.image(f"images/{row['image']}")
 
 with col2:
     for index, row in df[4:8].iterrows():
-        st.header(f"{row['first name']} {row['last name']}")
+        st.subheader(f"{row['first name'].title()} {row['last name'].title()}")
         st.write(row["role"])
         st.image(f"images/{row['image']}")
 
 with col3:
     for index, row in df[8:].iterrows():
-        st.header(f"{row['first name']} {row['last name']}")
+        st.subheader(f"{row['first name'].title()} {row['last name'].title()}")
         st.write(row["role"])
         st.image(f"images/{row['image']}")
